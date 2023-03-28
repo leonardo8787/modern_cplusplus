@@ -4,22 +4,23 @@
 // recebe nó de uma classe em outro arquivo
 #include "no.hpp"
 
+template <typename T>
 class LinkedList {
     public:
         // inicia cabeça da lista com nulo
-        Node* head;
+        Node<T>* head;
         LinkedList() {
             head = nullptr;
         }
 
         // adiciona número na lista
-        template <typename T> void add(T val) {
-            Node* newNode = new Node(val);
+        void add(T val) {
+            Node<T>* newNode = new Node<T>(val);
             if (head == nullptr) {
                 head = newNode;
                 return;
             }
-            Node* current = head;
+            Node<T>* current = head;
             while (current->next != nullptr) {
                 current = current->next;
             }
@@ -27,20 +28,20 @@ class LinkedList {
         }
 
         // remove elemento da lista
-        template <typename T> void remove(T val) {
+        void remove(T val) {
             if (head == nullptr) 
                 return;
                 
             if (head->value == val) {
-                Node* temp = head;
+                Node<T>* temp = head;
                 head = head->next;
                 delete temp;
                 return;
             }
-            Node* current = head;
+            Node<T>* current = head;
             while (current->next != nullptr) {
                 if (current->next->value == val) {
-                    Node* temp = current->next;
+                    Node<T>* temp = current->next;
                     current->next = current->next->next;
                     delete temp;
                     return;
@@ -51,7 +52,7 @@ class LinkedList {
 
         // mostra elementos da lista encadeada 
         void print() {
-            Node* current = head;
+            Node<T>* current = head;
             while (current != nullptr) {
                 cout << current->value << " ";
                 current = current->next;

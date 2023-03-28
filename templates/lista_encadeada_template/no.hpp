@@ -5,11 +5,12 @@
 using namespace std;
 
 //nó é criado, bem parecido com uma struct.
+template <typename T>
 class Node {
     public:
-        int value;
-        Node* next;
-        template <typename T> Node(T val) {
+        T value;
+        Node<T>* next;
+        Node(T val) {
             value = val;
             next = nullptr;
         }

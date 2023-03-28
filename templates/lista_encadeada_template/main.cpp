@@ -2,7 +2,7 @@
 #include "no.hpp"
 
 int main(int argc, char** argv) {
-    LinkedList list;
+    LinkedList<int> list;
     int aux=1;
     do{
         cout<<"---Menu---"<<endl;
