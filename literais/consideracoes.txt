@@ -1,0 +1,1 @@
+Este código foi desenvolvido em ambiente Linux! Utilize o gcc com versões superiores ao 9.4.0 visto que testei para versões anteriores e o código não rodou.

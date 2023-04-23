@@ -1,48 +1,65 @@
-#ifndef url_h_
-#define url_h_
+#ifndef URL_H
+#define URL_H
 
-#include<bits/stdc++.h>
+#include <iostream>
+#include <string>
+
 using namespace std;
 
 class URL {
     private:
-        string _dominio;
-        string _esquema;
-        int _porta;
-        string _caminho;
-
+        string esquema;
+        string dominio;
+        int porta;
+        string caminho;
     public:
-        URL() : _esquema(""), _dominio(""), _porta(0), _caminho("") {}
-
-        URL(const string& esquema, const string& dominio, int porta, const string& caminho)
-            : _esquema(esquema), _dominio(dominio), _porta(porta), _caminho(caminho) {}
-
-        URL(const URL& outraURL)
-            : _esquema(outraURL._esquema), _dominio(outraURL._dominio), _porta(outraURL._porta), _caminho(outraURL._caminho) {}
+        std::string url_;
+        URL() : esquema(""), dominio(""), porta(0), caminho("") {}
+        URL(string esquema, string dominio, int porta, string caminho) : 
+            esquema(esquema), dominio(dominio), porta(porta), caminho(caminho) {}
+        URL(const URL& other);
         
-        string getEsquema()
-            return _esquema;
-
-        void setEsquema(string esquema)
-            _esquema = esquema;
-
-        string getDominio()
-            return _dominio;
-
-        void setDominio(string dominio)
-            _dominio = dominio;
-
-        int getPorta()
-            return _porta;
-
-        void setPorta(int porta)
-            _porta = porta;
-
-        string getCaminho()
-            return _caminho;
-
-        void setCaminho(string caminho)
-            _caminho = caminho;
+        string get_esquema() { return esquema; }
+        void set_esquema(string esquema) { this->esquema = esquema; }
+        
+        string get_dominio() { return dominio; }
+        void set_dominio(string dominio) { this->dominio = dominio; }
+        
+        int get_porta() { return porta; }
+        void set_porta(int porta) { this->porta = porta; }
+        
+        string get_caminho() { return caminho; }
+        void set_caminho(string caminho) { this->caminho = caminho; }
 };
 
-#endif 
+// Sobrecarga do operador de sufixo
+URL operator""_url(const char* str, long unsigned int size) {
+    string url_str(str, size);
+    // Separando os componentes da URL
+    string esquema = "", dominio = "", caminho = "";
+    int porta = 0;
+    
+    size_t pos = url_str.find("://");
+    if (pos != string::npos) {
+        esquema = url_str.substr(0, pos);
+        url_str.erase(0, pos + 3);
+    }
+    
+    pos = url_str.find("/");
+    if (pos != string::npos) {
+        dominio = url_str.substr(0, pos);
+        caminho = url_str.substr(pos);
+    } else {
+        dominio = url_str;
+    }
+    
+    pos = dominio.find(":");
+    if (pos != string::npos) {
+        porta = stoi(dominio.substr(pos + 1));
+        dominio.erase(pos);
+    }
+    
+    return URL(esquema, dominio, porta, caminho);
+}
+
+#endif
