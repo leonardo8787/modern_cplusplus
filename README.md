@@ -88,4 +88,54 @@ The algorithm for multiplying two number strings would be as follows:
 
 <h2>Signal</h2>
 
+Signal in C++ refers to a mechanism that allows a program to receive asynchronous notifications of external events outside its normal flow of execution, such as interruption signals from the operating system or hardware events. These events can include the interruption of an ongoing operation, the need to handle an exception situation, a change in the system's state, or the capture of a signal sent by another process.
+
+The C++ standard library provides a set of predefined signals, such as SIGINT for program interruption through a keyboard signal, and SIGSEGV to notify when a memory access violation occurs.
+
+The signal mechanism in C++ is implemented using the concept of a signal handler function, which is a registered function to handle a particular signal. When a signal is received, the operating system interrupts the normal program execution and calls the corresponding signal handler function, which is responsible for handling the event.
+
+A simple example of using signals in C++ is as follows:
+
+~~~
+#include <iostream>
+#include <csignal>
+
+void signal_handler(int signal) {
+    std::cout << "Received signal: " << signal << std::endl;
+    std::exit(signal);
+}
+
+int main() {
+    std::signal(SIGINT, signal_handler); // Registra a função signal_handler para o sinal SIGINT
+    std::cout << "Waiting for SIGINT signal..." << std::endl;
+    while (true) {} // Loop infinito para esperar o sinal
+    return 0;
+}
+~~~
+
+In this example, the program registers the signal_handler function to handle the SIGINT signal. When the user presses Ctrl+C, the operating system sends the SIGINT signal to the program, which interrupts normal execution and calls the signal_handler function, which prints a warning message and exits the program with the error code corresponding to the received signal.
+
 <h2>Templates</h2>
+
+Templates in C++ are a form of generic programming that allows you to create functions and classes that can be used with different data types without needing to rewrite the code for each specific type. A template defines a generic structure that is later instantiated with a specific type when the function or class is used in the code.
+
+For example, a template function for addition can be written once and then used with different data types such as integers, floating point numbers, etc.:
+
+~~~
+template<typename T>
+T soma(T a, T b) {
+  return a + b;
+}
+
+int main() {
+  int x = 1, y = 2;
+  float f = 1.5, g = 2.5;
+  std::cout << soma(x, y) << std::endl; // output: 3
+  std::cout << soma(f, g) << std::endl; // output: 4
+  return 0;
+}
+~~~
+
+In this example, the template sum defines a function that takes two arguments of the same type T and returns the sum of those values. In the main function, the sum function is used with two different types: int and float. The C++ compiler creates two instances of the sum function, one for int and another for float, and generates the necessary machine code for each type automatically.
+
+
