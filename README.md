@@ -84,7 +84,68 @@ The algorithm for multiplying two number strings would be as follows:
 
 <h2>Initializer_list</h2>
 
+initializer_list em C++ é um recurso da linguagem que permite a inicialização de objetos de forma semelhante a um array, porém com tamanho fixo e conhecido em tempo de compilação.
+
+Essa estrutura é definida na biblioteca padrão do C++ pela classe std::initializer_list<T>, onde T é o tipo de dado que será armazenado na lista.
+
+Para usar o initializer_list, basta criar um objeto da classe initializer_list com os valores a serem inicializados, que podem ser passados como uma lista delimitada por chaves ({}) separando os elementos por vírgulas.
+
+Um exemplo simples de uso do initializer_list é a seguinte função que recebe uma lista de inteiros como argumento e retorna a soma dos valores:
+
+~~~
+#include <iostream>
+#include <initializer_list>
+
+int soma(std::initializer_list<int> lista) {
+    int resultado = 0;
+    for (auto valor : lista) {
+        resultado += valor;
+    }
+    return resultado;
+}
+
+int main() {
+    std::cout << soma({1, 2, 3, 4, 5}) << std::endl; // Output: 15
+    return 0;
+}
+~~~
+
+In this example, the function "soma" receives an initializer_list object of integers and iterates over the values of the list, summing them up and returning the result. In the call to the "soma" function in the main function, a list of integers delimited by braces is passed, and the result is printed to the standard output.
+
+The use of initializer_list allows for a simple and concise initialization of objects that need to store a fixed list of values, without the need to create an array or a more complex structure. Additionally, this structure is used by many other classes in the C++ standard library, such as std::vector, std::array, and std::map, to allow for the initialization of their objects with a list of values.
+
 <h2>literais</h2>
+
+In C++, a literal is a sequence of characters that represents a constant value of a specific data type. Literals can be used in expressions to represent data values that do not change during program execution. There are different types of literals in C++, including numeric literals, character literals, string literals, and boolean literals.
+
+Here are some examples of literals in C++:
+
+Numeric literals:
+ - 42: represents an integer value of 42.
+ - 3.14: represents a floating-point value of 3.14.
+ - 0x1F: represents a hexadecimal integer value of 31.
+Character literals:
+ - 'a': represents the character 'a'.
+ - '7': represents the character '7'.
+ - '\n': represents the newline character.
+String literals:
+ - "hello": represents the character sequence "hello".
+ - "world": represents the character sequence "world".
+Boolean literals:
+ - true: represents the true boolean value.
+ - false: represents the false boolean value.
+
+Additionally, literals in C++ can have suffixes that indicate the data type they represent. For example:
+
+~~~
+int a = 42;
+unsigned int b = 42u;
+float c = 3.14f;
+~~~
+
+These examples illustrate the use of suffixes in literals to indicate the data type they represent.
+
+Literals are a fundamental part of the C++ programming language, as they allow programmers to represent constant values in their programs in a simple and intuitive way.
 
 <h2>Signal</h2>
 
