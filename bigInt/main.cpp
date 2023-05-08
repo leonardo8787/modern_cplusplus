@@ -9,16 +9,25 @@ operadores +, -, *, /
 operador literal (sufixo _)
 */
 
-#include "bigInt.hpp"
-#include "bigInt.cpp"
+#include "bigIntWithClass.hpp"
 
 int main(){
-    string numero1, numero2; cin>>numero1>>numero2;
-    cout<<numero1<<" "<<numero2;
+    // BigIng num1("123456789012345678901234567890");
+    // BigIng num2("987654321098765432109876543210");
+
+    BigIng num1("1");
+    BigIng num2("2");
+
     cout<<endl<<"========= Resultado ========="<<endl;
-    cout<<"soma: "<<somarStrings(numero1, numero2)<<endl;
-    cout<<"subtracao: "<<subtrairStrings(numero1, numero2)<<endl;
-    cout<<"multiplicacao: "<<multiplicarStrings(numero1, numero2)<<endl;
-    cout<<"divisao: "<<dividirStrings(numero1, numero2)<<endl;
+    
+    BigIng sum = num1 + num2;
+    cout<<"soma: "<<sum.toString()<<endl;
+    BigIng diff = num1 - num2;
+    cout<<"subtracao: "<<diff.toString()<<endl;
+    // BigIng prod = num1 * num2;
+    // cout<<"multiplicacao: "<<prod.toString()<<endl; 
+    // BigIng quotient = num1 / num2;
+    // cout<<"divisao (inteira): "<<quotient.toString()<<endl;
+    
     return 0;
 }
