@@ -13,9 +13,9 @@ int main(int argc, char** argv){
         input.append(" ");
     }
     for(int i=0; i<argc; ++i){
-        if((argv[i]) == "-p"){
-            cout<<"precisão: "<<argv[++i]<<endl;
+        if(strcmp(argv[i], "-p") == 0){
             precisao=stoi(argv[++i]);
+            cout<<precisao<<endl;
         }
     }
     input.erase(std::remove_if(input.begin(), input.end(), [](unsigned char c){ return std::isspace(c); }), input.end());
@@ -44,8 +44,7 @@ int main(int argc, char** argv){
             value = int_distribution(generator);
         else 
             value = real_distribution(generator);
-        cout << fixed;
-        cout<<"["<<setprecision(precisao)<<value<<"] ";
+        cout<<"["<<fixed<<setprecision(precisao)<<value<<"] ";
     }
     return 0;
 }
